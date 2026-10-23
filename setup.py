@@ -8,6 +8,8 @@ Allows local installation and distribution of the 'performance_analyzer' package
 
  
 
+from pathlib import Path
+
 from setuptools import setup, find_packages 
 
  
@@ -28,9 +30,8 @@ setup(
 
      
 
-    # Detailed Description (Reads from README.md if present) 
-
-    long_description=open("README.md", encoding="utf-8").read() if False else "Educational Data Processing Package", 
+    # Detailed Description
+    long_description=(Path(__file__).parent / "readme.md").read_text(encoding="utf-8"),
 
     long_description_content_type="text/markdown", 
 
