@@ -10,37 +10,27 @@ Allows local installation and distribution of the 'performance_analyzer' package
 
 from pathlib import Path
 
-from setuptools import setup, find_packages 
+from setuptools import find_packages, setup
 
- 
+ROOT = Path(__file__).resolve().parent
+README_PATH = ROOT / "README.md"
+if not README_PATH.exists():
+    README_PATH = ROOT / "readme.md"
 
-setup( 
-
-    # Package Identification 
-
-    name="performance_analyzer", 
-
-    version="1.0.0", 
-
-    author="Educational Data Systems Team", 
-
-    author_email="devs@educationaldata.org", 
-
-    description="A modular Python package for score validation, grading rules, and class performance analytics.", 
-
-     
+setup(
+    # Package Identification
+    name="performance_analyzer",
+    version="1.0.0",
+    author="Educational Data Systems Team",
+    author_email="devs@educationaldata.org",
+    description="A modular Python package for score validation, grading rules, and class performance analytics.",
 
     # Detailed Description
-    long_description=(Path(__file__).parent / "readme.md").read_text(encoding="utf-8"),
+    long_description=README_PATH.read_text(encoding="utf-8") if README_PATH.exists() else "",
+    long_description_content_type="text/markdown",
 
-    long_description_content_type="text/markdown", 
-
-     
-
-    # Package Discovery 
-
-    packages=find_packages(),  # Automatically discovers 'performance_analyzer' 
-
+    # Package Discovery
+    packages=find_packages(),  # Automatically discovers 'performance_analyzer'
      
 
     # Environment & Python Requirements 
