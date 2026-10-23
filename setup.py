@@ -10,12 +10,26 @@ Allows local installation and distribution of the 'performance_analyzer' package
 
 from pathlib import Path
 
-from setuptools import find_packages, setup
+try:
+    from setuptools import find_packages, setup  # pyright: ignore[reportMissingModuleSource]
+except ModuleNotFoundError as exc:
+    raise RuntimeError(
+        "setuptools is required to install/build this package. "
+        "Install it with: python -m pip install setuptools"
+    ) from exc
 
 ROOT = Path(__file__).resolve().parent
-README_PATH = ROOT / "README.md"
-if not README_PATH.exists():
-    README_PATH = ROOT / "readme.md"
+
+
+def find_readme() -> Path:
+    """Return the README file regardless of filename case."""
+    for candidate in ROOT.iterdir():
+        if candidate.is_file() and candidate.name.lower() == "readme.md":
+            return candidate
+    return ROOT / "readme.md"
+
+
+README_PATH = find_readme()
 
 setup(
     # Package Identification
