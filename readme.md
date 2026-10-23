@@ -46,3 +46,31 @@ student_analyzer_project/
 
 └── setup.py                          <-- Package Setup & Distribution Metadata 
 ```
+
+## Installation & Setup
+
+From the project directory, create and activate a virtual environment, then
+install the package in editable mode:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e .
+```
+
+Editable mode makes changes to the package source available immediately.
+The build configuration installs the required packaging tools in an isolated
+build environment. You do not need to run `setup.py` directly.
+
+To run the example application:
+
+```powershell
+python main.py
+```
+
+If you do not activate the environment, use its Python executable directly:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -e .
+.\.venv\Scripts\python.exe main.py
+```

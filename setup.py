@@ -8,20 +8,21 @@ Allows local installation and distribution of the 'performance_analyzer' package
 
  
 
-from pathlib import Path
+import pathlib
 
 try:
     from setuptools import find_packages, setup  # pyright: ignore[reportMissingModuleSource]
 except ModuleNotFoundError as exc:
     raise RuntimeError(
-        "setuptools is required to install/build this package. "
-        "Install it with: python -m pip install setuptools"
+        "setuptools is required to run setup.py directly. "
+        "Prefer installing the package with `python -m pip install -e .` "
+        "from the project directory."
     ) from exc
 
-ROOT = Path(__file__).resolve().parent
+ROOT = pathlib.Path(__file__).resolve().parent
 
 
-def find_readme() -> Path:
+def find_readme() -> pathlib.Path:
     """Return the README file regardless of filename case."""
     for candidate in ROOT.iterdir():
         if candidate.is_file() and candidate.name.lower() == "readme.md":
@@ -57,11 +58,8 @@ setup(
 
     classifiers=[ 
 
-        "Programming Language :: Python :: 3", 
-
-        "License :: OSI Approved :: MIT License", 
-
-        "Operating System :: OS Independent", 
+        "Programming Language :: Python :: 3",
+        "Operating System :: OS Independent",
 
         "Topic :: Education", 
 

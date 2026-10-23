@@ -1,3 +1,4 @@
+pyproject.toml
 setup.py
 performance_analyzer/__init__.py
 performance_analyzer/metrics.py
